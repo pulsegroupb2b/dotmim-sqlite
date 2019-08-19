@@ -71,10 +71,30 @@ namespace ClaWeb.Sync.Box
             _provider = provider;
             _configuration = configuration;
             ConnectionString = _configuration.GetConnectionString("HUB");
+
+            var db = "box.db";
+            var conn = new SQLiteConnection($"Data Source={db};");
+            // Open connection to allow encryption
+            conn.Open();
+            var cmd = conn.CreateCommand();
+            var password = _configuration["SqlPassword"];
+            // Prevent SQL Injection
+            cmd.CommandText = "SELECT quote($password);";
+            cmd.Parameters.AddWithValue("$password", password);
+            var quotedPassword = (string)cmd.ExecuteScalar();
+            // Encrypt database
+            cmd.CommandText = "PRAGMA key = " + quotedPassword;
+            cmd.Parameters.Clear();
+            cmd.ExecuteNonQuery();
+
+            // How do I pass this connection to the SyncAgent?
+
             _clientProvider = new SqliteSyncProvider("box.db");
             _proxyClientProvider = new WebProxyClientProvider(new Uri(_configuration["ClaWebApiServer"] + "/sync/post"));
             _agent = new SyncAgent(_clientProvider,_proxyClientProvider);
+
             
+
             _sync = sync;
             _logger = logger;
             //_sync.ChangeDetect += async (sender, args) => { await _provider.UpdateServer(_hubConnection, _myJwt); };

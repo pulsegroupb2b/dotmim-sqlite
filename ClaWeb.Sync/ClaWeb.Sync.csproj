@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dotmim.Sync.Core" Version="0.3.0" />
+    <PackageReference Include="Dotmim.Sync.Sqlite" Version="0.3.0" />
+    <PackageReference Include="Dotmim.Sync.SqlServer" Version="0.3.0" />
+    <PackageReference Include="Dotmim.Sync.Web.Client" Version="0.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Azure.Devices" Version="1.18.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Win32.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Reactive" Version="4.1.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClaWeb.Auth\ClaWeb.Auth.csproj" />
+    <ProjectReference Include="..\ClaWeb.Data\ClaWeb.Data.csproj">
+      <Project>{ABD1753F-1B89-48E5-A5E4-4ED71FE650DC}</Project>
+      <Name>ClaWeb.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

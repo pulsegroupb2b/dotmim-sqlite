@@ -1,0 +1,102 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/ClaWeb.Sync.csproj",
+    "projectName": "ClaWeb.Sync",
+    "projectPath": "/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/ClaWeb.Sync.csproj",
+    "outputPath": "/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.2"
+    ],
+    "frameworks": {
+      "netcoreapp2.2": {
+        "projectReferences": {
+          "/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Auth/ClaWeb.Auth.csproj": {
+            "projectPath": "/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Auth/ClaWeb.Auth.csproj"
+          },
+          "/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Data/ClaWeb.Data.csproj": {
+            "projectPath": "/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Data/ClaWeb.Data.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.2": {
+      "dependencies": {
+        "Dotmim.Sync.Core": {
+          "target": "Package",
+          "version": "[0.3.0, )"
+        },
+        "Dotmim.Sync.SqlServer": {
+          "target": "Package",
+          "version": "[0.3.0, )"
+        },
+        "Dotmim.Sync.Sqlite": {
+          "target": "Package",
+          "version": "[0.3.0, )"
+        },
+        "Dotmim.Sync.Web.Client": {
+          "target": "Package",
+          "version": "[0.3.0, )"
+        },
+        "Microsoft.AspNetCore.SignalR": {
+          "target": "Package",
+          "version": "[1.1.0, )"
+        },
+        "Microsoft.AspNetCore.SignalR.Client": {
+          "target": "Package",
+          "version": "[1.1.0, )"
+        },
+        "Microsoft.Azure.Devices": {
+          "target": "Package",
+          "version": "[1.18.1, )"
+        },
+        "Microsoft.Extensions.Logging.Console": {
+          "target": "Package",
+          "version": "[2.2.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.6, )",
+          "autoReferenced": true
+        },
+        "Microsoft.Win32.Primitives": {
+          "target": "Package",
+          "version": "[4.3.0, )"
+        },
+        "System.Data.SQLite.Core": {
+          "target": "Package",
+          "version": "[1.0.111, )"
+        },
+        "System.IdentityModel.Tokens.Jwt": {
+          "target": "Package",
+          "version": "[5.5.0, )"
+        },
+        "System.Linq": {
+          "target": "Package",
+          "version": "[4.3.0, )"
+        },
+        "System.Reactive": {
+          "target": "Package",
+          "version": "[4.1.5, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

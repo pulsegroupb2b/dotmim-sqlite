@@ -1,0 +1,14 @@
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/bin/Debug/netcoreapp2.1/ClaWeb.Sync.deps.json
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/bin/Debug/netcoreapp2.1/ClaWeb.Sync.dll
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/bin/Debug/netcoreapp2.1/ClaWeb.Sync.pdb
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/bin/Debug/netcoreapp2.1/ClaWeb.Auth.dll
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/bin/Debug/netcoreapp2.1/ClaWeb.Data.dll
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/bin/Debug/netcoreapp2.1/ClaWeb.Auth.pdb
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/bin/Debug/netcoreapp2.1/ClaWeb.Data.pdb
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/obj/Debug/netcoreapp2.1/ClaWeb.Sync.csprojAssemblyReference.cache
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/obj/Debug/netcoreapp2.1/ClaWeb.Sync.csproj.CoreCompileInputs.cache
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/obj/Debug/netcoreapp2.1/ClaWeb.Sync.AssemblyInfoInputs.cache
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/obj/Debug/netcoreapp2.1/ClaWeb.Sync.AssemblyInfo.cs
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/obj/Debug/netcoreapp2.1/ClaWeb.Sync.csproj.CopyComplete
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/obj/Debug/netcoreapp2.1/ClaWeb.Sync.dll
+/Users/danielgrothman/Bitbucket/claweb/ClaWeb.Sync/obj/Debug/netcoreapp2.1/ClaWeb.Sync.pdb
