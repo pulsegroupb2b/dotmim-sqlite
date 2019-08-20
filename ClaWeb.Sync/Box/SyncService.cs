@@ -61,7 +61,9 @@ namespace ClaWeb.Sync.Box
             _configuration = configuration;
             ConnectionString = _configuration.GetConnectionString("HUB");
             _clientProvider = new SqliteSyncProvider("box.db");
-            _clientProvider.InterceptConnectionOpen(args =>
+            _proxyClientProvider = new WebProxyClientProvider(new Uri(_configuration["ClaWebApiServer"] + "/sync/post"));
+            _agent = new SyncAgent(_clientProvider,_proxyClientProvider);
+            _agent.LocalProvider.InterceptConnectionOpen(args =>
             {
                 var connection = args.Connection as SqliteConnection;
                 if (connection == null)
@@ -81,8 +83,6 @@ namespace ClaWeb.Sync.Box
                 cmd.Parameters.Clear();
                 cmd.ExecuteNonQuery();
             });
-            _proxyClientProvider = new WebProxyClientProvider(new Uri(_configuration["ClaWebApiServer"] + "/sync/post"));
-            _agent = new SyncAgent(_clientProvider,_proxyClientProvider);
             _sync = sync;
             _logger = logger;
             //_sync.ChangeDetect += async (sender, args) => { await _provider.UpdateServer(_hubConnection, _myJwt); };
