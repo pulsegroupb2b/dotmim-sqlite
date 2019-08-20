@@ -1,34 +1,23 @@
 using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ClaWeb.Data.Models;
 using ClaWeb.Sync.BaseClasses;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Configuration;
 using ClaWeb.Auth;
 using Dotmim.Sync;
-using Dotmim.Sync.Enumerations;
-using Dotmim.Sync.Filter;
 using Dotmim.Sync.Sqlite;
-using Dotmim.Sync.SqlServer;
 using Dotmim.Sync.Web.Client;
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.Azure.Devices;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ClaWeb.Sync.Box
 {
@@ -71,30 +60,29 @@ namespace ClaWeb.Sync.Box
             _provider = provider;
             _configuration = configuration;
             ConnectionString = _configuration.GetConnectionString("HUB");
-
-            var db = "box.db";
-            var conn = new SQLiteConnection($"Data Source={db};");
-            // Open connection to allow encryption
-            conn.Open();
-            var cmd = conn.CreateCommand();
-            var password = _configuration["SqlPassword"];
-            // Prevent SQL Injection
-            cmd.CommandText = "SELECT quote($password);";
-            cmd.Parameters.AddWithValue("$password", password);
-            var quotedPassword = (string)cmd.ExecuteScalar();
-            // Encrypt database
-            cmd.CommandText = "PRAGMA key = " + quotedPassword;
-            cmd.Parameters.Clear();
-            cmd.ExecuteNonQuery();
-
-            // How do I pass this connection to the SyncAgent?
-
             _clientProvider = new SqliteSyncProvider("box.db");
+            _clientProvider.InterceptConnectionOpen(args =>
+            {
+                var connection = args.Connection as SqliteConnection;
+                if (connection == null)
+                {
+                    _logger.LogError("Couldn't convert db connection to SqliteConnection");
+                    return;
+                }
+
+                var cmd = connection.CreateCommand();
+                var password = _configuration["SqlPassword"];
+                // Prevent SQL Injection
+                cmd.CommandText = "SELECT quote($password);";
+                cmd.Parameters.AddWithValue("$password", password);
+                var quotedPassword = (string) cmd.ExecuteScalar();
+                // Encrypt database
+                cmd.CommandText = "PRAGMA key = " + quotedPassword;
+                cmd.Parameters.Clear();
+                cmd.ExecuteNonQuery();
+            });
             _proxyClientProvider = new WebProxyClientProvider(new Uri(_configuration["ClaWebApiServer"] + "/sync/post"));
             _agent = new SyncAgent(_clientProvider,_proxyClientProvider);
-
-            
-
             _sync = sync;
             _logger = logger;
             //_sync.ChangeDetect += async (sender, args) => { await _provider.UpdateServer(_hubConnection, _myJwt); };
